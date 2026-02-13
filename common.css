@@ -1,0 +1,106 @@
+/* 🌐 GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* 🌐 BODY */
+body {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* 🌐 HEADER */
+header {
+  background: #020617;
+  color: white;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 22px;
+}
+
+nav a {
+  color: #cbd5f5;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* 🌐 MAIN CONTAINER */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 40px;
+}
+
+/* 🌐 CARD */
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+/* 🌐 BUTTON */
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1e40af;
+}
+
+/* 🌐 INPUTS */
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid #cbd5f5;
+}
+
+/* 🌐 FOOTER */
+footer {
+  text-align: center;
+  padding: 22px;
+  background: #020617;
+  color: #94a3b8;
+  margin-top: 60px;
+}
+/* ===== LOGIN PAGE CENTERING ===== */
+.login-page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background: white;
+  padding: 36px;
+  border-radius: 18px;
+  width: 360px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  text-align: center;
+}
+/* 🔒 Hide navbar links on login page */
+.login-only nav {
+  display: none;
+}

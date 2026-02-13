@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Support | Student Help Hub</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: #0f172a;
+}
+
+/* HEADER */
+header {
+  background: #020617;
+  color: white;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 22px;
+}
+
+nav a {
+  color: #cbd5f5;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* CARD */
+.wrapper {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: rgba(255,255,255,0.95);
+  width: 520px;
+  padding: 40px;
+  border-radius: 22px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+}
+
+.card h2 {
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: #475569;
+  margin-bottom: 30px;
+}
+
+/* FORM */
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  border: 1px solid #cbd5f5;
+  font-size: 14px;
+}
+
+textarea {
+  resize: none;
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 22px;
+  background: #020617;
+  color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Student Help Hub</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="wrapper">
+  <div class="card">
+    <h2>💬 Contact Support</h2>
+    <p>Tell us what you need help with — we’re here for you.</p>
+
+    <form onsubmit="sendHelp(event)">
+      <label>Your Email</label>
+      <input type="email" id="email" required placeholder="you@example.com">
+
+      <label>Help Category</label>
+      <select id="category">
+        <option>Login / Account Issue</option>
+        <option>Assignments</option>
+        <option>MCQ Tests</option>
+        <option>Notes / PDFs</option>
+        <option>Website Bug</option>
+        <option>Other</option>
+      </select>
+
+      <div class="row">
+        <div style="flex:1">
+          <label>Priority</label>
+          <select id="priority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Message</label>
+      <textarea id="message" rows="5" required placeholder="Explain your issue clearly..."></textarea>
+
+      <button type="submit">🚀 Send Request</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  © 2026 Student Help Hub
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB2u3wCtjUVzCKJ2FnqN32vslAk7KMcM0c",
+  authDomain: "student-help-hub-final.firebaseapp.com",
+  databaseURL: "https://student-help-hub-final-default-rtdb.firebaseio.com",
+  projectId: "student-help-hub-final",
+  storageBucket: "student-help-hub-final.firebasestorage.app",
+  messagingSenderId: "139296721175",
+  appId: "1:139296721175:web:76e41e4cc6f65292d60f52"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+window.sendHelp = function (e) {
+  e.preventDefault();
+
+  const data = {
+    email: document.getElementById("email").value,
+    category: document.getElementById("category").value,
+    priority: document.getElementById("priority").value,
+    message: document.getElementById("message").value,
+    createdAt: new Date().toISOString(),
+    status: "open"
+  };
+
+  push(ref(db, "support_requests"), data)
+    .then(() => {
+      alert("✅ Request submitted successfully!");
+      e.target.reset();
+    })
+    .catch(err => {
+      alert("❌ Something went wrong");
+      console.error(err);
+    });
+};
+</script>
+</body>
+</html>

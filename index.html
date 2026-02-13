@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Help Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+/* NAVBAR */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  z-index: 1000;
+}
+
+header h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+nav a {
+  color: #cbd5e1;
+  margin-left: 28px;
+  text-decoration: none;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* HERO SECTION */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 140px 20px 60px;
+  text-align: center;
+  background: radial-gradient(circle at 30% 30%, #2563eb, #0f172a);
+}
+
+.hero h2 {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 900px;
+}
+
+.hero p {
+  margin-top: 22px;
+  font-size: 18px;
+  color: #e2e8f0;
+  max-width: 600px;
+}
+
+.buttons {
+  margin-top: 40px;
+}
+
+.buttons a {
+  display: inline-block;
+  padding: 14px 28px;
+  margin: 10px;
+  border-radius: 50px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.primary-btn {
+  background: white;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+.secondary-btn {
+  border: 1px solid #cbd5e1;
+  color: white;
+}
+
+.secondary-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* FEATURES */
+.features {
+  padding: 100px 60px;
+  background: #0f172a;
+  text-align: center;
+}
+
+.features h3 {
+  font-size: 32px;
+  margin-bottom: 60px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 40px;
+}
+
+.feature-card {
+  background: #1e293b;
+  padding: 40px 30px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  background: #334155;
+}
+
+.feature-card h4 {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.feature-card p {
+  font-size: 15px;
+  color: #cbd5e1;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #020617;
+  color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Student Help Hub</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="exam-tips.html">Exam Tips</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Your Complete Academic Companion For Smarter Learning</h2>
+  <p>
+    Student Help Hub brings together notes, assignments, exam strategies,
+    and cheat sheets in one clean, focused platform designed for results.
+  </p>
+
+  <div class="buttons">
+    <a href="notes.html" class="primary-btn">Explore Notes</a>
+    <a href="exam-tips.html" class="secondary-btn">Exam Strategies</a>
+  </div>
+</section>
+
+<section class="features">
+  <h3>Why Choose Student Help Hub?</h3>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h4>📚 Structured Notes</h4>
+      <p>Exam-ready PDFs organized subject-wise for faster revision.</p>
+    </div>
+
+    <div class="feature-card">
+      <h4>📝 Assignments</h4>
+      <p>Track, submit, and review assignments easily.</p>
+    </div>
+
+    <div class="feature-card">
+      <h4>🧠 Smart Exam Tips</h4>
+      <p>Subject-specific strategies & cheat sheets to score more.</p>
+    </div>
+
+    <div class="feature-card">
+      <h4>🚀 Built for Students</h4>
+      <p>Simple, distraction-free and performance-focused experience.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Student Help Hub — Built by Lakshit Bansal
+</footer>
+
+</body>
+</html>

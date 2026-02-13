@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="common.css">
+  <meta charset="UTF-8" />
+  <title>Admin Panel – Assignments</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<!-- 🔐 ADMIN PROTECTION (ONLY ONE CLEAN CHECK) -->
+<script>
+  const role = localStorage.getItem("role");
+
+  if (role !== "admin") {
+    alert("Access denied. Admin only.");
+    window.location.href = "login.html";
+  }
+</script>
+
+<header>
+  <h1>Student Help Hub</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dashboard-admin.html">Admin Dashboard</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="exam-tips.html">Exam Tips</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<header class="navbar">
+  <h2>Admin Panel – Assignments</h2>
+</header>
+
+<main style="padding: 30px; max-width: 800px; margin: auto;">
+
+  <h3>Add New Assignment</h3>
+
+  <form id="assignmentForm" class="admin-form">
+
+    <label>Subject</label>
+    <input
+      type="text"
+      id="subject"
+      placeholder="DSA, OS, DBMS, CN"
+      required
+    />
+
+    <label>Assignment Title</label>
+    <input
+      type="text"
+      id="title"
+      placeholder="Trees Assignment"
+      required
+    />
+
+    <label>Due Date</label>
+    <input
+      type="date"
+      id="dueDate"
+      required
+    />
+
+    <label>Question PDF Path</label>
+    <input
+      type="text"
+      id="pdf"
+      placeholder="pdfs/DSA_Trees_Assignment.pdf"
+      required
+    />
+
+    <button type="submit">➕ Add Assignment</button>
+
+  </form>
+
+  <p id="message" style="margin-top: 15px; font-weight: bold;"></p>
+
+</main>
+
+<footer>
+  © 2026 Student Help Hub
+</footer>
+
+<!-- ✅ LOCAL STORAGE LOGIC (NO FIREBASE) -->
+<script>
+  const form = document.getElementById("assignmentForm");
+  const message = document.getElementById("message");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const assignment = {
+      id: Date.now(),
+      subject: document.getElementById("subject").value.trim(),
+      title: document.getElementById("title").value.trim(),
+      dueDate: document.getElementById("dueDate").value,
+      pdf: document.getElementById("pdf").value.trim()
+    };
+
+    let assignments =
+      JSON.parse(localStorage.getItem("assignments")) || [];
+
+    assignments.push(assignment);
+
+    localStorage.setItem(
+      "assignments",
+      JSON.stringify(assignments)
+    );
+
+    message.textContent = "✅ Assignment added successfully!";
+    message.style.color = "green";
+
+    form.reset();
+  });
+</script>
+
+</body>
+</html>

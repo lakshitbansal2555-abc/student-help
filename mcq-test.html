@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <header>
+  <h1>Student Help Hub</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="exam-tips.html">Exam Tips</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+<head>
+  <title>MCQ Test</title>
+</head>
+<body>
+
+<h1>📝 MCQ Test</h1>
+
+<form id="testForm"></form>
+
+<button onclick="submitTest()">Submit Test</button>
+
+<script>
+  const mcqs = JSON.parse(localStorage.getItem("mcqs")) || [];
+  const form = document.getElementById("testForm");
+
+  mcqs.forEach((mcq, index) => {
+    let html = `<p><b>${index + 1}. ${mcq.question}</b></p>`;
+
+    mcq.options.forEach((opt, i) => {
+      html += `
+        <label>
+          <input type="radio" name="q${index}" value="${i}">
+          ${opt}
+        </label><br>
+      `;
+    });
+
+    form.innerHTML += html + "<br>";
+  });
+
+  function submitTest() {
+    let score = 0;
+
+    mcqs.forEach((mcq, index) => {
+      const selected = document.querySelector(`input[name="q${index}"]:checked`);
+      if (selected && selected.value == mcq.correct) {
+        score++;
+      }
+    });
+
+    alert("Your Score: " + score + " / " + mcqs.length);
+  }
+  let score = 0;
+
+function loadQuiz(subject) {
+  db.collection("mcq")
+    .where("subject", "==", subject)
+    .get()
+    .then((snapshot) => {
+      const quizContainer = document.getElementById("quizContainer");
+      quizContainer.innerHTML = "";
+
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+
+        quizContainer.innerHTML += `
+          <div class="question-box">
+            <p>${data.question}</p>
+            <button onclick="checkAnswer('${data.correctAnswer}', '${data.option1}')">${data.option1}</button>
+            <button onclick="checkAnswer('${data.correctAnswer}', '${data.option2}')">${data.option2}</button>
+            <button onclick="checkAnswer('${data.correctAnswer}', '${data.option3}')">${data.option3}</button>
+            <button onclick="checkAnswer('${data.correctAnswer}', '${data.option4}')">${data.option4}</button>
+          </div>
+        `;
+      });
+    });
+}
+
+function checkAnswer(correct, selected) {
+  if(correct === selected) {
+    score++;
+  }
+}
+</script>
+<footer>
+  © 2026 Student Help Hub
+</footer>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exam Tips | Student Help Hub</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      margin-top: 8px;
+      font-size: 16px;
+    }
+
+    /* SUBJECT BUTTONS */
+    .subjects {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin: 35px 0;
+      flex-wrap: wrap;
+    }
+
+    .subjects button {
+      padding: 10px 24px;
+      border-radius: 999px;
+      border: none;
+      background: #e5e7eb;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .subjects button:hover {
+      transform: translateY(-2px);
+    }
+
+    .subjects button.active {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* TIPS GRID */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 26px;
+      margin-top: 40px;
+    }
+
+    .tip-card {
+      background: white;
+      padding: 22px;
+      border-radius: 16px;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.08);
+      transition: all 0.25s ease;
+      text-align: left;
+      position: relative;
+      border-left: 5px solid #2563eb;
+    }
+
+    .tip-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 45px rgba(0,0,0,0.12);
+    }
+
+    .tip-card::before {
+      content: "💡 TIP";
+      font-weight: 700;
+      font-size: 12px;
+      color: #2563eb;
+      display: block;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    /* CHEAT SHEET */
+    .cheat-box {
+      margin: 60px auto 0;
+      padding: 32px;
+      max-width: 650px;
+      background: linear-gradient(135deg, #f9fafb, #eef2ff);
+      border-radius: 20px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.1);
+    }
+
+    .cheat-box h3 {
+      margin-bottom: 14px;
+    }
+
+    .cheat-box a {
+      margin: 10px;
+      padding: 12px 22px;
+      border-radius: 12px;
+      background: #2563eb;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+
+    .cheat-box a:last-child {
+      background: #16a34a;
+    }
+
+    .cheat-box a:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <h1>Student Help Hub</h1>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="notes.html">Notes</a>
+  <a href="assignments.html">Assignments</a>
+  <a href="exam-tips.html">Exam Tips</a>
+  <a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<section class="page">
+  <h2>🧠 Exam Preparation Tips</h2>
+  <p class="subtitle">Subject-wise expert tips & cheat sheets</p>
+
+  <div class="subjects">
+    <button onclick="loadTips('DSA', this)" class="active">DSA</button>
+    <button onclick="loadTips('DBMS', this)">DBMS</button>
+    <button onclick="loadTips('OS', this)">OS</button>
+    <button onclick="loadTips('CN', this)">CN</button>
+  </div>
+
+  <div id="tipsContainer" class="tips-grid"></div>
+  <div id="cheatSheet" class="cheat-box"></div>
+</section>
+
+<footer>
+  © 2026 Student Help Hub
+</footer>
+
+<script>
+const data = {
+  DSA: {
+    tips: [
+      "Always draw tree and graph diagrams before writing answers",
+      "Mention time and space complexity clearly at the end",
+      "Explain recursion using stack flow or call tree",
+      "Handle edge cases like empty input or single node",
+      "Write clean pseudocode before coding",
+      "Use examples to explain traversal algorithms",
+      "Prefer iterative approach if asked to optimize space",
+      "Clearly mention constraints given in the question",
+      "Write base case separately in recursion",
+      "Avoid overwriting input unless allowed"
+    ],
+    cheat: "pdfs/cheat-sheets/dsa.pdf"
+  },
+
+  DBMS: {
+    tips: [
+      "Draw ER diagrams neatly with proper symbols",
+      "Normalize step-by-step (1NF → 2NF → 3NF)",
+      "Always specify primary and foreign keys",
+      "Write SQL keywords in uppercase",
+      "Use proper indentation in queries",
+      "Explain ACID properties with examples",
+      "Use tables for comparison questions",
+      "Mention advantages and limitations clearly",
+      "Use real-world examples for transactions",
+      "Avoid mixing JOIN types unnecessarily"
+    ],
+    cheat: "pdfs/cheat-sheets/dbms.pdf"
+  },
+
+  OS: {
+    tips: [
+      "Draw Gantt charts for CPU scheduling",
+      "Mention assumptions before solving numericals",
+      "Explain deadlocks using all four conditions",
+      "Use diagrams for paging and segmentation",
+      "Compare algorithms using tables",
+      "Mention advantages and disadvantages",
+      "Explain context switching clearly",
+      "Use examples for memory allocation",
+      "Write formulas before calculations",
+      "Avoid skipping intermediate steps"
+    ],
+    cheat: "pdfs/cheat-sheets/os.pdf"
+  },
+
+  CN: {
+    tips: [
+      "Draw OSI and TCP/IP layer diagrams",
+      "Explain protocols with real-life examples",
+      "Write full forms clearly",
+      "Use flow diagrams for algorithms",
+      "Explain error detection techniques",
+      "Mention port numbers where required",
+      "Differentiate TCP vs UDP in tables",
+      "Explain routing algorithms stepwise",
+      "Avoid vague definitions",
+      "Use diagrams for subnetting"
+    ],
+    cheat: "pdfs/cheat-sheets/cn.pdf"
+  }
+};
+
+function loadTips(subject, btn) {
+  document.querySelectorAll(".subjects button")
+    .forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+
+  const tipsBox = document.getElementById("tipsContainer");
+  const cheatBox = document.getElementById("cheatSheet");
+
+  tipsBox.innerHTML = "";
+  data[subject].tips.forEach(tip => {
+    const div = document.createElement("div");
+    div.className = "tip-card";
+    div.textContent = tip;
+    tipsBox.appendChild(div);
+  });
+
+  cheatBox.innerHTML = `
+    <h3>📄 ${subject} Cheat Sheet</h3>
+    <a href="${data[subject].cheat}" target="_blank">View</a>
+    <a href="${data[subject].cheat}" download>Download</a>
+  `;
+}
+
+loadTips("DSA", document.querySelector(".subjects button"));
+</script>
+
+</body>
+</html>

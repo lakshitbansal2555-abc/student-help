@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <header>
+  <h1>Student Help Hub</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="exam-tips.html">Exam Tips</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+<head>
+    <link rel="stylesheet" href="common.css">
+  <meta charset="UTF-8">
+  <title>Admin MCQ Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>📝 Add MCQ Questions</h1>
+
+  <form id="mcqForm">
+    <input type="text" id="question" placeholder="Enter Question" required><br><br>
+
+    <input type="text" id="opt1" placeholder="Option 1" required><br>
+    <input type="text" id="opt2" placeholder="Option 2" required><br>
+    <input type="text" id="opt3" placeholder="Option 3" required><br>
+    <input type="text" id="opt4" placeholder="Option 4" required><br><br>
+
+    <select id="correct">
+      <option value="0">Option 1</option>
+      <option value="1">Option 2</option>
+      <option value="2">Option 3</option>
+      <option value="3">Option 4</option>
+    </select><br><br>
+
+    <button type="submit">Save Question</button>
+  </form>
+
+  <br>
+  <a href="dashboard.html">⬅ Back to Dashboard</a>
+
+  <!-- PROTECT ADMIN PAGE -->
+  <script>
+    const role = localStorage.getItem("role");
+    if (role !== "admin") {
+      alert("Access Denied ❌ Admin Only");
+      window.location.href = "dashboard.html";
+    }
+  </script>
+  <script>
+  const form = document.getElementById("mcqForm");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const mcq = {
+      question: document.getElementById("question").value,
+      options: [
+        document.getElementById("opt1").value,
+        document.getElementById("opt2").value,
+        document.getElementById("opt3").value,
+        document.getElementById("opt4").value
+      ],
+      correct: document.getElementById("correct").value
+    };
+
+    let mcqs = JSON.parse(localStorage.getItem("mcqs")) || [];
+    mcqs.push(mcq);
+    localStorage.setItem("mcqs", JSON.stringify(mcqs));
+
+    alert("MCQ Saved ✅");
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
+<footer>
+  © 2026 Student Help Hub
+</footer>

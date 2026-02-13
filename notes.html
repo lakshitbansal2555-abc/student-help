@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes | Student Help Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+  <h1>Student Help Hub</h1>
+  <nav>
+  <a href="index.html">Home</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="notes.html">Notes</a>
+  <a href="assignments.html">Assignments</a>
+  <a href="exam-tips.html">Exam Tips</a>
+  <a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<!-- NOTES SECTION -->
+<section class="page">
+  <h2>📘 Study Notes</h2>
+  <p>Select a subject or search by topic</p>
+
+  <!-- SEARCH -->
+  <input
+    type="text"
+    id="searchNotes"
+    class="search-box"
+    placeholder="Search subject or topic (DSA, OS, SQL, CN...)"
+  >
+
+  <!-- CARDS -->
+  <div class="cards" id="notesCards">
+
+    <!-- DATA STRUCTURES -->
+    <div class="card" data-subject="data structures dsa" data-topics="stacks queues trees graphs">
+      <div class="icon">📘</div>
+      <h3>Data Structures</h3>
+      <p>Stacks, Queues, Trees, Graphs</p>
+      <div class="btn-group">
+        <a href="pdfs/ds-notes.pdf" target="_blank" class="read-btn">Read PDF</a>
+        <a href="pdfs/ds-notes.pdf" download class="download-btn">Download</a>
+      </div>
+    </div>
+
+    <!-- OPERATING SYSTEMS -->
+    <div class="card" data-subject="operating systems os" data-topics="process memory scheduling">
+      <div class="icon">💻</div>
+      <h3>Operating Systems</h3>
+      <p>Processes, Memory, Scheduling</p>
+      <div class="btn-group">
+        <a href="pdfs/operating-systems.pdf" target="_blank" class="read-btn">Read PDF</a>
+        <a href="pdfs/operating-systems.pdf" download class="download-btn">Download</a>
+      </div>
+    </div>
+
+    <!-- DBMS -->
+    <div class="card" data-subject="dbms database" data-topics="sql normalization transactions">
+      <div class="icon">🗄️</div>
+      <h3>Database Management (DBMS)</h3>
+      <p>SQL, Normalization, Transactions</p>
+      <div class="btn-group">
+        <a href="pdfs/dbms.pdf" target="_blank" class="read-btn">Read PDF</a>
+        <a href="pdfs/dbms.pdf" download class="download-btn">Download</a>
+      </div>
+    </div>
+
+    <!-- COMPUTER NETWORKS -->
+    <div class="card" data-subject="computer networks cn" data-topics="osi tcp ip routing">
+      <div class="icon">🌐</div>
+      <h3>Computer Networks</h3>
+      <p>OSI Model, TCP/IP, Routing</p>
+      <div class="btn-group">
+        <a href="pdfs/computer-networks.pdf" target="_blank" class="read-btn">Read PDF</a>
+        <a href="pdfs/computer-networks.pdf" download class="download-btn">Download</a>
+      </div>
+    </div>
+
+    <!-- COMPUTER SCIENCE CORE -->
+    <div class="card" data-subject="computer science core" data-topics="dsa os dbms cn">
+      <div class="icon">📚</div>
+      <h3>Computer Science Core Notes</h3>
+      <p>DSA, OS, DBMS, Computer Networks</p>
+      <div class="btn-group">
+        <a href="pdfs/computer-science-core-notes.pdf" target="_blank" class="read-btn">
+          Read PDF
+        </a>
+        <a href="pdfs/computer-science-core-notes.pdf" download class="download-btn">
+          Download
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Student Help Hub | Built for Students
+</footer>
+
+<!-- SEARCH SCRIPT -->
+<script>
+  const searchInput = document.getElementById("searchNotes");
+  const cards = document.querySelectorAll(".card");
+
+  searchInput.addEventListener("keyup", () => {
+    const value = searchInput.value.toLowerCase();
+
+    cards.forEach(card => {
+      const subject = card.dataset.subject;
+      const topics = card.dataset.topics;
+
+      if (subject.includes(value) || topics.includes(value)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

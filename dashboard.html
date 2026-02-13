@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard | Student Help Hub</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, #020617, #020617);
+  color: white;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 22px;
+}
+
+nav a {
+  color: #cbd5f5;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* DASHBOARD */
+.dashboard {
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 40px;
+}
+
+.welcome {
+  margin-bottom: 40px;
+}
+
+.welcome h2 {
+  font-size: 34px;
+}
+
+.welcome p {
+  color: #475569;
+}
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 50px;
+}
+
+.stat-card {
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+.stat-card h3 {
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+/* ACTIONS */
+.actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+}
+
+.action-card {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  padding: 30px;
+  border-radius: 22px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.action-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.action-card h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 22px;
+  background: #020617;
+  color: #94a3b8;
+  margin-top: 70px;
+}
+</style>
+
+<script>
+  // SINGLE CLEAN PROTECTION SCRIPT
+  if (localStorage.getItem("role") !== "student") {
+    window.location.href = "login.html";
+  }
+</script>
+
+</head>
+
+<body>
+
+<header>
+  <h1>Student Help Hub</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="notes.html">Notes</a>
+    <a href="assignments.html">Assignments</a>
+    <a href="mcq-test.html">MCQ Test</a>
+  </nav>
+</header>
+
+<section class="dashboard">
+
+  <div class="welcome">
+    <h2>👋 Welcome back, Student</h2>
+    <p>Your learning journey continues here</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <h3>📘 12</h3>
+      <p>Notes Available</p>
+    </div>
+    <div class="stat-card">
+      <h3>📝 3</h3>
+      <p>Assignments Pending</p>
+    </div>
+    <div class="stat-card">
+      <h3>🧠 5</h3>
+      <p>MCQ Tests</p>
+    </div>
+    <div class="stat-card">
+      <h3>⭐ 85%</h3>
+      <p>Average Score</p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <div class="action-card" onclick="location.href='notes.html'">
+      <h4>📚 Study Notes</h4>
+      <p>Subject-wise curated notes</p>
+    </div>
+
+    <div class="action-card" onclick="location.href='assignments.html'">
+      <h4>📝 Assignments</h4>
+      <p>View & submit assignments</p>
+    </div>
+
+    <div class="action-card" onclick="location.href='mcq-test.html'">
+      <h4>🧠 MCQ Tests</h4>
+      <p>Practice & get instant score</p>
+    </div>
+
+    <div class="action-card" onclick="location.href='exam-tips.html'">
+      <h4>🚀 Exam Tips</h4>
+      <p>Smart strategies to score more</p>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 Student Help Hub
+</footer>
+
+</body>
+</html>
